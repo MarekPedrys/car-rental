@@ -1,14 +1,14 @@
-package pl.jcommerce.carrental.car;
+package pl.jcommerce.carrental.car.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ourCars")
+//@Table(name = "ourCars")
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String brand;
     private String model;
     private int yearOfProduction;
@@ -23,8 +23,8 @@ public class Car {
     private boolean automaticTransmission;
     private boolean available;
 
-    public Car(String brand, String model, Integer yearOfProduction, Body body, Fuel fuel, Color color, Integer numberOfSeats,
-               Integer numberOfDoors, Boolean automaticTransmission, boolean available) {
+    public Car(String brand, String model, Integer yearOfProduction, Body body, Fuel fuel, Color color,
+               Integer numberOfSeats, Integer numberOfDoors, Boolean automaticTransmission, boolean available) {
         this.brand = brand;
         this.model = model;
         this.yearOfProduction = yearOfProduction;
@@ -40,7 +40,7 @@ public class Car {
     public Car() {
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

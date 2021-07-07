@@ -1,4 +1,4 @@
-package pl.jcommerce.carrental.car;
+package pl.jcommerce.carrental.car.entity;
 
 public enum Fuel {
     PETROL,
