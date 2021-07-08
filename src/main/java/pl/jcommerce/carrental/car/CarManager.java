@@ -24,7 +24,7 @@ public class CarManager {
         if (carRepository.findById(carId).isPresent()) {
             return new ResponseEntity<>(carRepository.findById(carId).get(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // DO POPRAWKI
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
