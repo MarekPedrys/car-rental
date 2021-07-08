@@ -48,7 +48,8 @@ class CarControllerSpecification extends Specification {
         mockMvc.perform(get("/api/cars")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-
+//                .andExpect(MockMvcResultMatchers.jsonPath("$.employeeId").exists());
+//                .andExpect(content().string(containsString("Hello, Mock")));
     }
 
     def "should get status 200 when it gets a single car by correct id"() {
@@ -58,7 +59,7 @@ class CarControllerSpecification extends Specification {
                 .andExpect(status().isOk())
     }
 
-    def "should get status 4xx when it gets a single car by incorrect id"() {
+    def "should get status 404 when it gets a single car by incorrect id"() {
         expect:
         mockMvc.perform(get("/api/cars/" + carTest1Id + 1)
                 .accept(MediaType.APPLICATION_JSON))
@@ -86,7 +87,7 @@ class CarControllerSpecification extends Specification {
 
     def "should get status 202 when deletes a car"() {
         expect:
-        mockMvc.perform(delete("/api/cars/1"))
+        mockMvc.perform(delete("/api/cars/" + carTest1Id))
                 .andExpect(status().isAccepted())
 
     }
