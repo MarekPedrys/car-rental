@@ -3,7 +3,6 @@ package pl.jcommerce.carrental.car;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.jcommerce.carrental.car.entity.Car;
-import pl.jcommerce.carrental.car.entity.CarManager;
 
 import java.util.List;
 

@@ -1,9 +1,10 @@
-package pl.jcommerce.carrental.car.entity;
+package pl.jcommerce.carrental.car;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import pl.jcommerce.carrental.car.CarRepository;
+import pl.jcommerce.carrental.car.entity.Car;
+
 import java.util.List;
 
 @Service
