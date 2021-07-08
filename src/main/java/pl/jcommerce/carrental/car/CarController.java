@@ -1,7 +1,9 @@
 package pl.jcommerce.carrental.car;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.jcommerce.carrental.car.entity.Car;
+import pl.jcommerce.carrental.car.entity.CarManager;
 
 import java.util.List;
 
@@ -9,36 +11,35 @@ import java.util.List;
 @RequestMapping("/api/cars")
 public class CarController {
 
-    private final CarRepository carRepository;
+    private CarManager carManager;
 
-    public CarController(CarRepository carRepository) {
-        this.carRepository = carRepository;
+    public CarController(CarManager carManager) {
+        this.carManager = carManager;
     }
 
     @GetMapping
-    public List<Car> getAllCars() {
-        return carRepository.findAll();
+    public ResponseEntity<List<Car>> getAllCars() {
+        return carManager.getAllCars();
     }
 
     @GetMapping("/{carId}")
-    public Car getCarById(@PathVariable Long carId) {
-        return carRepository.findById(carId).orElseThrow();
+    public ResponseEntity<Car> getCarById(@PathVariable Long carId) {
+        return carManager.getCarById(carId);
     }
 
     @PostMapping
-    public Car addCar(@RequestBody Car car) {
-        return carRepository.save(car);
+    public ResponseEntity<Car> addCar(@RequestBody Car car) {
+        return carManager.addCar(car);
     }
 
     @PutMapping("/{carId}")
     public Car updateCar(@PathVariable Long carId, @RequestBody Car car) {
-        car.setId(carId);
-        return carRepository.save(car);
+        return carManager.updateCar(carId, car);
     }
 
     @DeleteMapping("/{carId}")
-    public void deleteCarById(@PathVariable Long carId) {
-        carRepository.deleteById(carId);
+    public ResponseEntity<Car> deleteCarById(@PathVariable Long carId) {
+        return carManager.deleteCarById(carId);
     }
 
 }
