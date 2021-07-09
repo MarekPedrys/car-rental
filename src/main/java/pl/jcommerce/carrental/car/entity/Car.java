@@ -37,6 +37,21 @@ public class Car {
         this.available = available;
     }
 
+    public Car(Long id, String brand, String model, int yearOfProduction, Body body, Fuel fuel, Color color,
+               int numberOfSeats, int numberOfDoors, boolean automaticTransmission, boolean available) {
+        this.id = id;
+        this.brand = brand;
+        this.model = model;
+        this.yearOfProduction = yearOfProduction;
+        this.body = body;
+        this.fuel = fuel;
+        this.color = color;
+        this.numberOfSeats = numberOfSeats;
+        this.numberOfDoors = numberOfDoors;
+        this.automaticTransmission = automaticTransmission;
+        this.available = available;
+    }
+
     public Car() {
     }
 

@@ -1,0 +1,2 @@
+INSERT INTO car
+    (brand, model, year_of_production, body, fuel, color, number_of_seats, number_of_doors, automatic_transmission, available) VALUES ('Skoda', 'Octavia', '2021', 'KOMBI', 'PETROL', 'WHITE', '5', '5', 'true', 'true'), ('Skoda', 'Fabia', '2019', 'HATCHBACK', 'PETROL', 'RED', '5', '5', 'false', 'true'), ('Skoda', 'Superb', '2020', 'KOMBI', 'PETROL', 'BLACK', '5', '5', 'true', 'true');

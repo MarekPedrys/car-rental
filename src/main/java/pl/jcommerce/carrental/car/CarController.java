@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/api/cars")
 public class CarController {
 
-    private CarManager carManager;
+    private final CarManager carManager;
 
     public CarController(CarManager carManager) {
         this.carManager = carManager;

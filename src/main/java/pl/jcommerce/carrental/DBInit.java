@@ -60,6 +60,5 @@ public class DBInit {
         reservationRepository.save(reservation1);
         reservationRepository.save(reservation2);
 
-
     }
 }

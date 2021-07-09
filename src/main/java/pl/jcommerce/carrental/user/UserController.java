@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserController {
     
-    private UserManager userManager;
+    private final UserManager userManager;
 
     public UserController(UserManager userManager) {
         this.userManager = userManager;

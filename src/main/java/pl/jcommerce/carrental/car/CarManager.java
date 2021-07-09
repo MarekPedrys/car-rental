@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class CarManager {
 
-    CarRepository carRepository;
+    private final CarRepository carRepository;
 
     public CarManager(CarRepository carRepository) {
         this.carRepository = carRepository;
