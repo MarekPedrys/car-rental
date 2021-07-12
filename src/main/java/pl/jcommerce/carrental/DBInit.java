@@ -4,10 +4,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import pl.jcommerce.carrental.car.CarRepository;
-import pl.jcommerce.carrental.car.entity.Body;
 import pl.jcommerce.carrental.car.entity.Car;
-import pl.jcommerce.carrental.car.entity.Color;
-import pl.jcommerce.carrental.car.entity.Fuel;
 import pl.jcommerce.carrental.reservation.ReservationRepository;
 import pl.jcommerce.carrental.reservation.entity.Reservation;
 import pl.jcommerce.carrental.user.UserRepository;
@@ -32,21 +29,23 @@ public class DBInit {
     @EventListener(ApplicationReadyEvent.class)
     public void runExample() {
 
-        Car car1 = new Car("Fiat", "Punto", 2014, Body.HATCHBACK, Fuel.PETROL,
-                Color.RED, 5, 3, false, true);
-        Car car2 = new Car("Fiat", "Punto", 2017, Body.HATCHBACK, Fuel.PETROL,
-                Color.SILVER, 5, 5, false, true);
-        Car car3 = new Car("Fiat", "Stilo", 2019, Body.SEDAN, Fuel.DIESEL,
-                Color.SILVER, 5, 5, false, true);
-        Car car4 = new Car("Fiat", "Stilo", 2020, Body.KOMBI, Fuel.PETROL,
-                Color.WHITE, 5, 5, false, true);
-        Car car5 = new Car("Ford", "Focus", 2017, Body.KOMBI, Fuel.DIESEL,
-                Color.SILVER, 5, 5, true, true);
+        Car car1 = new Car("Fiat", "Punto", "Hatchback");
+        Car car2 = new Car("Fiat", "Punto", "Hatchback");
+        Car car3 = new Car("Fiat", "Stilo", "Kombi");
+        Car car4 = new Car("Ford", "Focus", "Kombi");
+        Car car5 = new Car("Ford", "Focus", "Hatchback");
+        Car car6 = new Car("BMW", "X5", "SUV");
+        Car car7 = new Car("Peugeot", "208", "Hatchback");
+        Car car8 = new Car("Peugeot", "208", "Hatchback");
+
         carRepository.save(car1);
         carRepository.save(car2);
         carRepository.save(car3);
         carRepository.save(car4);
         carRepository.save(car5);
+        carRepository.save(car6);
+        carRepository.save(car7);
+        carRepository.save(car8);
 
         User user1 = new User("Adam Adamowski", "adam@gmail.com");
         User user2 = new User("Basia Basiowska", "basia@gmail.com");
@@ -55,10 +54,14 @@ public class DBInit {
         userRepository.save(user2);
         userRepository.save(user3);
 
-        Reservation reservation1 = new Reservation(car1, user3, LocalDate.of(2021, 7, 13), LocalDate.of(2021, 7, 14), false);
-        Reservation reservation2 = new Reservation(car4, user2, LocalDate.of(2021, 7, 22), LocalDate.of(2021, 7, 26), true);
+        Reservation reservation1 = new Reservation(car1, user3, LocalDate.of(2021, 7, 19), LocalDate.of(2021, 7, 21), false);
+        Reservation reservation2 = new Reservation(car4, user2, LocalDate.of(2021, 7, 23), LocalDate.of(2021, 7, 26), true);
+        Reservation reservation3 = new Reservation(car4, user2, LocalDate.of(2021, 7, 28), LocalDate.of(2021, 7, 29), true);
+        Reservation reservation4 = new Reservation(car4, user2, LocalDate.of(2021, 7, 17), LocalDate.of(2021, 7, 22), true);
         reservationRepository.save(reservation1);
         reservationRepository.save(reservation2);
+        reservationRepository.save(reservation3);
+        reservationRepository.save(reservation4);
 
     }
 }

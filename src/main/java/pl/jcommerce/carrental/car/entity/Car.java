@@ -1,9 +1,11 @@
 package pl.jcommerce.carrental.car.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-//@Table(name = "ourCars")
 public class Car {
 
     @Id
@@ -11,45 +13,12 @@ public class Car {
     private Long id;
     private String brand;
     private String model;
-    private int yearOfProduction;
-    @Enumerated(EnumType.STRING)
-    private Body body;
-    @Enumerated(EnumType.STRING)
-    private Fuel fuel;
-    @Enumerated(EnumType.STRING)
-    private Color color;
-    private int numberOfSeats;
-    private int numberOfDoors;
-    private boolean automaticTransmission;
-    private boolean available;
+    private String body;
 
-    public Car(String brand, String model, Integer yearOfProduction, Body body, Fuel fuel, Color color,
-               Integer numberOfSeats, Integer numberOfDoors, Boolean automaticTransmission, boolean available) {
+    public Car(String brand, String model, String body) {
         this.brand = brand;
         this.model = model;
-        this.yearOfProduction = yearOfProduction;
         this.body = body;
-        this.fuel = fuel;
-        this.color = color;
-        this.numberOfSeats = numberOfSeats;
-        this.numberOfDoors = numberOfDoors;
-        this.automaticTransmission = automaticTransmission;
-        this.available = available;
-    }
-
-    public Car(Long id, String brand, String model, int yearOfProduction, Body body, Fuel fuel, Color color,
-               int numberOfSeats, int numberOfDoors, boolean automaticTransmission, boolean available) {
-        this.id = id;
-        this.brand = brand;
-        this.model = model;
-        this.yearOfProduction = yearOfProduction;
-        this.body = body;
-        this.fuel = fuel;
-        this.color = color;
-        this.numberOfSeats = numberOfSeats;
-        this.numberOfDoors = numberOfDoors;
-        this.automaticTransmission = automaticTransmission;
-        this.available = available;
     }
 
     public Car() {
@@ -59,7 +28,7 @@ public class Car {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -79,67 +48,11 @@ public class Car {
         this.model = model;
     }
 
-    public int getYearOfProduction() {
-        return yearOfProduction;
-    }
-
-    public void setYearOfProduction(int yearOfProduction) {
-        this.yearOfProduction = yearOfProduction;
-    }
-
-    public Body getBody() {
+    public String getBody() {
         return body;
     }
 
-    public void setBody(Body body) {
+    public void setBody(String body) {
         this.body = body;
-    }
-
-    public Fuel getFuel() {
-        return fuel;
-    }
-
-    public void setFuel(Fuel fuel) {
-        this.fuel = fuel;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public int getNumberOfSeats() {
-        return numberOfSeats;
-    }
-
-    public void setNumberOfSeats(int numberOfSeats) {
-        this.numberOfSeats = numberOfSeats;
-    }
-
-    public int getNumberOfDoors() {
-        return numberOfDoors;
-    }
-
-    public void setNumberOfDoors(int numberOfDoors) {
-        this.numberOfDoors = numberOfDoors;
-    }
-
-    public boolean isAutomaticTransmission() {
-        return automaticTransmission;
-    }
-
-    public void setAutomaticTransmission(boolean automaticTransmission) {
-        this.automaticTransmission = automaticTransmission;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
-
-    public void setAvailable(boolean available) {
-        this.available = available;
     }
 }

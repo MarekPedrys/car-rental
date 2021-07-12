@@ -1,6 +1,9 @@
 package pl.jcommerce.carrental.user.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class User { // implements UserDetails ?
@@ -10,12 +13,12 @@ public class User { // implements UserDetails ?
     private String username;
     private String email;
 
-    public User() {
-    }
-
     public User(String username, String email) {
         this.username = username;
         this.email = email;
+    }
+
+    public User() {
     }
 
     public Long getId() {
@@ -41,4 +44,5 @@ public class User { // implements UserDetails ?
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
