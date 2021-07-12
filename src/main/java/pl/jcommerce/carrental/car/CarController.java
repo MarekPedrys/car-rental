@@ -3,6 +3,7 @@ package pl.jcommerce.carrental.car;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.jcommerce.carrental.car.entity.Car;
+import pl.jcommerce.carrental.reservation.entity.Reservation;
 
 import java.util.List;
 
@@ -41,4 +42,8 @@ public class CarController {
         return carManager.deleteCarById(carId);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Car>> getAllAcceptedCarsForTheGivenDate(@RequestBody Reservation expectedReservation){
+        return carManager.getAllAcceptedCarsForTheGivenDate(expectedReservation);
+    }
 }

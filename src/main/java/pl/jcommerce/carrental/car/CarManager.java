@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import pl.jcommerce.carrental.car.entity.Car;
+import pl.jcommerce.carrental.reservation.entity.Reservation;
 
 import java.util.List;
 
@@ -45,4 +46,13 @@ public class CarManager {
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
+    public ResponseEntity<List<Car>> getAllAcceptedCarsForTheGivenDate(Reservation expectedReservation) {
+        return new ResponseEntity<>(carRepository.getAllAcceptedCarsForTheGivenDate(
+                expectedReservation.getCar().getBrand(),
+                expectedReservation.getCar().getModel(),
+                expectedReservation.getCar().getBody(),
+                expectedReservation.getStartDate(),
+                expectedReservation.getEndDate()),
+                HttpStatus.ACCEPTED);
+    }
 }

@@ -7,10 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import pl.jcommerce.carrental.CarRentalApplication
-import pl.jcommerce.carrental.car.entity.Body
+
 import pl.jcommerce.carrental.car.entity.Car
-import pl.jcommerce.carrental.car.entity.Color
-import pl.jcommerce.carrental.car.entity.Fuel
+
 import spock.lang.Specification
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
