@@ -1,17 +1,20 @@
 package pl.jcommerce.carrental.user.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import pl.jcommerce.carrental.reservation.entity.Reservation;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class User { // implements UserDetails ?
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
     private String email;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Reservation> reservations = new ArrayList<>();
 
     public User(String username, String email) {
         this.username = username;
@@ -43,6 +46,14 @@ public class User { // implements UserDetails ?
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 
 }

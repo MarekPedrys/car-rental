@@ -3,26 +3,39 @@ package pl.jcommerce.carrental.user;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import pl.jcommerce.carrental.user.dto.UserMapper;
+import pl.jcommerce.carrental.user.dto.UserWithoutReservationDTO;
 import pl.jcommerce.carrental.user.entity.User;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserManager {
     
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public UserManager(UserRepository userRepository) {
+    public UserManager(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
-    public ResponseEntity<List<User>> getAllUsers() {
-        return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<UserWithoutReservationDTO>> getAllUsers() {
+        List<UserWithoutReservationDTO> userWithoutReservationDTOS = userRepository.findAll()
+                .stream()
+                .map(userMapper::mapToUserWithoutReservationDTO)
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(userWithoutReservationDTOS, HttpStatus.OK);
     }
 
-    public ResponseEntity<User> getUserById(Long userId) {
+    public ResponseEntity<UserWithoutReservationDTO> getUserById(Long userId) {
         if (userRepository.findById(userId).isPresent()) {
-            return new ResponseEntity<>(userRepository.findById(userId).get(), HttpStatus.OK);
+            User user = userRepository.findById(userId).get();
+            UserWithoutReservationDTO userWithoutReservationDTO = userMapper.mapToUserWithoutReservationDTO(user);
+
+            return new ResponseEntity<>(userWithoutReservationDTO, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -39,6 +52,11 @@ public class UserManager {
 
     public ResponseEntity<User> deleteUserById(Long userId) {
         userRepository.deleteById(userId);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
+    public ResponseEntity<User> deleteAllUsers() {
+        userRepository.deleteAll();
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

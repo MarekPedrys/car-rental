@@ -2,6 +2,7 @@ package pl.jcommerce.carrental.car;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.jcommerce.carrental.car.dto.CarWithoutReservationDTO;
 import pl.jcommerce.carrental.car.entity.Car;
 import pl.jcommerce.carrental.reservation.entity.Reservation;
 
@@ -18,12 +19,12 @@ public class CarController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Car>> getAllCars() {
+    public ResponseEntity<List<CarWithoutReservationDTO>> getAllCars() {
         return carManager.getAllCars();
     }
 
     @GetMapping("/{carId}")
-    public ResponseEntity<Car> getCarById(@PathVariable Long carId) {
+    public ResponseEntity<CarWithoutReservationDTO> getCarById(@PathVariable Long carId) {
         return carManager.getCarById(carId);
     }
 
@@ -37,13 +38,18 @@ public class CarController {
         return carManager.updateCar(carId, car);
     }
 
+    @DeleteMapping
+    public ResponseEntity<Car> deleteAllCars(){
+        return carManager.deleteAllCars();
+    }
+
     @DeleteMapping("/{carId}")
     public ResponseEntity<Car> deleteCarById(@PathVariable Long carId) {
         return carManager.deleteCarById(carId);
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Car>> getAllAcceptedCarsForTheGivenDate(@RequestBody Reservation expectedReservation){
+    public ResponseEntity<List<CarWithoutReservationDTO>> getAllAcceptedCarsForTheGivenDate(@RequestBody Reservation expectedReservation){
         return carManager.getAllAcceptedCarsForTheGivenDate(expectedReservation);
     }
 }

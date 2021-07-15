@@ -1,9 +1,10 @@
 package pl.jcommerce.carrental.car.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import pl.jcommerce.carrental.reservation.entity.Reservation;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Car {
@@ -14,6 +15,8 @@ public class Car {
     private String brand;
     private String model;
     private String body;
+    @OneToMany(mappedBy = "car", fetch = FetchType.LAZY)
+    private List<Reservation> reservations = new ArrayList<>();
 
     public Car(String brand, String model, String body) {
         this.brand = brand;
@@ -54,5 +57,13 @@ public class Car {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

@@ -25,10 +25,11 @@ class CarControllerSpecification extends Specification {
     @Autowired
     CarRepository carRepository
 
-    Car carTest1 = new Car("brandTest1", "modelTest1", 2011, Body.HATCHBACK, Fuel.PETROL,
-            Color.RED, 5, 4, false, true)
-    Car carTest2 = new Car("brandTest2", "modelTest2", 2012, Body.HATCHBACK, Fuel.PETROL,
-            Color.RED, 2, 2, false, true)
+    @Autowired
+    CarManager carManager
+
+    Car carTest1 = new Car("brandTest1", "modelTest1", "Hatchback")
+    Car carTest2 = new Car("brandTest2", "modelTest2", "Kombi")
 
     Long carTest1Id
 
@@ -37,7 +38,7 @@ class CarControllerSpecification extends Specification {
     def carTestJson2 = objectMapper.writeValueAsString(carTest2)
 
     void setup() {
-        carRepository.deleteAll()
+        carManager.deleteAllCars()
         carRepository.save(carTest1)
         carTest1Id = carRepository.findByBrand("brandTest1").get(0).getId()
     }

@@ -9,18 +9,19 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface CarRepository extends JpaRepository<Car, Long> {
-    public List<Car> findByBrand(String brand);
+
+    List<Car> findByBrand(String brand);
 
     @Query(value = "SELECT * FROM car " +
             "WHERE " +
             "((:expectedBrand IS NULL OR car.brand = :expectedBrand) AND" +
             "(:expectedModel IS NULL OR car.model = :expectedModel) AND" +
             "(:expectedBody IS NULL OR car.body = :expectedBody))" +
-            "MINUS " +
-            "SELECT car.* FROM car LEFT JOIN reservation " +
+            "AND car.id NOT IN " +
+            "(SELECT car.id FROM car LEFT JOIN reservation " +
             "ON reservation.car_id = car.id " +
             "WHERE" +
-            "(reservation.start_date<:expectedEndDate AND reservation.end_date>:expectedStartDate)",
+            "(reservation.start_date<:expectedEndDate AND reservation.end_date>:expectedStartDate))",
             nativeQuery = true)
     List<Car> getAllAcceptedCarsForTheGivenDate(
             @Param("expectedBrand") String brand,
